@@ -13,9 +13,12 @@ int main(int argc, char **argv)
     struct sockaddr_in servaddr;
     bzero(&servaddr, sizeof servaddr);
 
+    char serverIp[32];
+    strcpy(serverIp,argv[1]);
+
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(22000);
-    inet_pton(AF_INET, "127.0.0.1", &(servaddr.sin_addr));
+    inet_pton(AF_INET, serverIp, &(servaddr.sin_addr));
 
     connect(sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr));
 
